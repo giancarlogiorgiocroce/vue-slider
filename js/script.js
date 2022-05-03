@@ -41,14 +41,37 @@ const app = new Vue({
                 image: 'img/05.jpg',
                 title: 'Paradise',
                 text: 'Et temporibus voluptatum suscipit tempore aliquid deleniti aut veniam inventore eligendi ex ad ullam, cumque provident totam omnis.',
-            }
+            }  
         ],
-        
+
+        activeIndex: 0,
+        // isActive: false,
     },
 
-    methods: {
 
+
+    methods: {
+        prev(){
+            this.activeIndex--;
+            if(this.activeIndex<0){
+                this.activeIndex = (this.slides.length - 1);
+            }
+            console.log(this.activeIndex);
+        },
+        next(){
+            this.activeIndex++;
+            if(this.activeIndex>(this.slides.length - 1)){
+                this.activeIndex = 0;
+            }
+            console.log(this.activeIndex);
+        },
+        selectThumb(index){
+            this.activeIndex = index;
+            // this.isActive = !this.isActive;
+        },
+        // activeThumb(){
+        //
+        // },
     }
     
 })
-

@@ -14,45 +14,34 @@
     <div id="app">
 
         <div class="container" >
-            <div class="slider-wrapper" tabindex="0">
+
+            <div class="slider-wrapper" 
+                @mouseenter="mouseOver()"
+                @mouseleave="mouseOut()"
+                tabindex="0">
 
                 <div class="item">
                     <img :src="slides[activeIndex].image" :alt="slides[activeIndex].title" />
                     <div class="text">
                         <h3>{{slides[activeIndex].title}}</h3>
-                        <p>
-                            {{slides[activeIndex].text}}
-                        </p>
+                        <p>{{slides[activeIndex].text}}</p>
                     </div>
                 </div>
 
                 <div class="thumbs">
-
                     <div class="prev" @click="prev()"></div>
                     <div class="next" @click="next()"></div>
 
                     <div class="thumb"
-                    :class=" index === activeIndex ? 'active' : '' "
-                    @click="selectThumb(index)"
-                    v-for="(slide, index) in slides">
+                        :class=" index === activeIndex ? 'active' : '' "
+                        @click="selectThumb(index)"
+                        v-for="(slide, index) in slides">
                         <img :src="slide.image" :alt="slide.title"/>
                     </div>
-
-                    <!-- <div class="thumb">
-                        <img src="img/02.jpg" alt="Svizzera" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/03.jpg" alt="Gran Bretagna" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/04.jpg" alt="Germania" />
-                    </div>
-                    <div class="thumb">
-                        <img src="img/05.jpg" alt="Paradise" />
-                    </div> -->
                 </div>
 
             </div>
+
         </div>
 
     </div>

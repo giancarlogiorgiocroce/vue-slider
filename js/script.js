@@ -45,10 +45,8 @@ const app = new Vue({
         ],
 
         activeIndex: 0,
-        // isActive: false,
+        autoScroll: null,
     },
-
-
 
     methods: {
         prev(){
@@ -56,22 +54,36 @@ const app = new Vue({
             if(this.activeIndex<0){
                 this.activeIndex = (this.slides.length - 1);
             }
-            console.log(this.activeIndex);
+            // console.log(this.activeIndex);   
         },
         next(){
             this.activeIndex++;
             if(this.activeIndex>(this.slides.length - 1)){
                 this.activeIndex = 0;
             }
-            console.log(this.activeIndex);
+            // console.log(this.activeIndex);
         },
         selectThumb(index){
             this.activeIndex = index;
-            // this.isActive = !this.isActive;
         },
-        // activeThumb(){
-        //
-        // },
-    }
+        startAutoScroll(){
+            this.autoScroll = setInterval( () => {
+                this.next();
+            }, 3000)
+        },
+        mouseOver(){
+            console.log("sono sopra");
+            clearInterval(this.autoScroll);
+            this.autoScroll = null;
+        },
+        mouseOut(){
+            console.log("sono fuori");
+            this.startAutoScroll();
+        }
+    },
+
+    mounted(){
+        this.startAutoScroll();
+    },
     
 })
